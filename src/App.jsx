@@ -1,16 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+
 const storeLinks = [
   {
     alt: "Last ned på App Store",
     href: "https://www.wix.com/templateslp/studio-external-link",
-    src: "/assets/apple-store.png",
+    src: asset("assets/apple-store.png"),
   },
   {
     alt: "Last ned på Google Play",
     href: "https://www.wix.com/templateslp/studio-external-link",
-    src: "/assets/google-play.png",
+    src: asset("assets/google-play.png"),
   },
 ];
 
@@ -34,22 +36,22 @@ const featureCards = [
 
 const securityCards = [
   {
-    icon: "/assets/icon-affordable.png",
+    icon: asset("assets/icon-affordable.png"),
     text: "Lokal databehandling med tydelig eierskap til informasjonen.",
     title: "Faktisk GDPR-etterlevelse",
   },
   {
-    icon: "/assets/icon-subscription.png",
+    icon: asset("assets/icon-subscription.png"),
     text: "Data lagres i norske datasentre med høy grad av kontroll.",
     title: "Fri fra Cloud Act-trussel",
   },
   {
-    icon: "/assets/icon-affordable.png",
+    icon: asset("assets/icon-affordable.png"),
     text: "Bedriftsløsninger bygget rundt norsk lov og norsk infrastruktur.",
     title: "Data i Norge",
   },
   {
-    icon: "/assets/icon-subscription.png",
+    icon: asset("assets/icon-subscription.png"),
     text: "Full åpenhet rundt behandling, lagring og tilgang til data.",
     title: "Best på personvern",
   },
@@ -58,21 +60,21 @@ const securityCards = [
 const pricingCards = [
   {
     delay: 20,
-    icon: "/assets/icon-affordable.png",
+    icon: asset("assets/icon-affordable.png"),
     index: "(01)",
     text: "Laget for å spare tid uten å gjøre innkjøpet tungt eller komplisert.",
     title: "Rimelig",
   },
   {
     delay: 110,
-    icon: "/assets/privacy-illustration.png",
+    icon: asset("assets/privacy-illustration.png"),
     index: "(02)",
     text: "Et tydelig alternativ for virksomheter som ikke kan kompromisse på sikkerhet.",
     title: "Best personvern",
   },
   {
     delay: 200,
-    icon: "/assets/icon-subscription.png",
+    icon: asset("assets/icon-subscription.png"),
     index: "(03)",
     text: "Velg selv modellen som passer best for teamet ditt.",
     title: "Kjøp eller abonnement",
@@ -80,28 +82,28 @@ const pricingCards = [
 ];
 
 const partnerLogos = [
-  { alt: "Imoge", parallax: "0.08", src: "/assets/partner-imoge.png" },
-  { alt: "Stella Maris", parallax: "0.1", src: "/assets/partner-stella-maris.png" },
-  { alt: "Gasparyan", parallax: "0.12", src: "/assets/partner-gasparyan.png" },
-  { alt: "Partnerlogo", parallax: "0.09", src: "/assets/partner-frame93.png" },
+  { alt: "Imoge", parallax: "0.08", src: asset("assets/partner-imoge.png") },
+  { alt: "Stella Maris", parallax: "0.1", src: asset("assets/partner-stella-maris.png") },
+  { alt: "Gasparyan", parallax: "0.12", src: asset("assets/partner-gasparyan.png") },
+  { alt: "Partnerlogo", parallax: "0.09", src: asset("assets/partner-frame93.png") },
 ];
 
 const testimonials = [
   {
     delay: 20,
-    image: "/assets/customer-ola.jpg",
+    image: asset("assets/customer-ola.jpg"),
     name: "Ola Normann",
     quote: "Utrolig enkelt å bruke. Vi bruker det til alt, og sparer enormt med tid.",
   },
   {
     delay: 110,
-    image: "/assets/customer-michelle.png",
+    image: asset("assets/customer-michelle.png"),
     name: "Referanse kommer",
     quote: "Flere kundehistorier og tilbakemeldinger publiseres snart.",
   },
   {
     delay: 200,
-    image: "/assets/customer-ben.jpg",
+    image: asset("assets/customer-ben.jpg"),
     name: "Kundehistorie kommer",
     quote: "Vi legger til flere kundeeksempler så snart de er klare.",
   },
@@ -482,8 +484,8 @@ function HomePage() {
 
             <div className="hero-visual" aria-hidden="true" data-animate="up-lg" data-delay="120">
               <div className="phone-stack" data-parallax="0.14">
-                <img className="phone-screen" src="/assets/phone-screenshot.png" alt="" />
-                <img className="phone-frame" src="/assets/phone-frame.png" alt="" />
+                <img className="phone-screen" src={asset("assets/phone-screenshot.png")} alt="" />
+                <img className="phone-frame" src={asset("assets/phone-frame.png")} alt="" />
               </div>
             </div>
           </div>
@@ -563,7 +565,7 @@ function HomePage() {
             </div>
             <div className="illustration-wrap" data-animate="up-lg" data-delay="120">
               <img
-                src="/assets/privacy-illustration.png"
+                src={asset("assets/privacy-illustration.png")}
                 alt="Illustrasjon for personvern og sikkerhet"
                 data-parallax="0.12"
               />
