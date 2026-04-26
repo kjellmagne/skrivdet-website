@@ -1,0 +1,14 @@
+https://static.wixstatic.com/media/c837a6_276d32f0ae154e05ba1ca3106443840c~mv2.png/v1/fill/w_324,h_96,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Google%20Play.png|google-play.png
+https://static.wixstatic.com/media/c837a6_9efe5b2d45e84b2188b8210f2e93f643~mv2.png/v1/fill/w_322,h_108,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Apple%20Store.png|apple-store.png
+https://static.wixstatic.com/media/c837a6_d8098e12abc245978b0348b4accafab6~mv2.png/v1/fill/w_52,h_63,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Group%2059.png|icon-affordable.png
+https://static.wixstatic.com/media/c837a6_7f9296dd6f6345a39a6b344b1f197873~mv2.png/v1/fill/w_87,h_42,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Group%2063.png|icon-subscription.png
+https://static.wixstatic.com/media/86cd9c_edf971b7594b4741a01c7c26af791a0a~mv2.png/v1/fill/w_490,h_1070,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-04-22%20at%2013_44_49.png|phone-screenshot.png
+https://static.wixstatic.com/media/11062b_c9c1371ff3c842518b816f71bbc9ce34~mv2.png/v1/fill/w_770,h_1530,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Smartphone%20Front%20View.png|phone-frame.png
+https://static.wixstatic.com/media/c837a6_88366d3a9b594d8682f4f826c83180c2~mv2.jpg/v1/fill/w_600,h_800,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/mayagi_commercial_photography_an_older_male_smiling_and_looking_5a0fd0da-5d14-40c7-992d-32.jpg|customer-ola.jpg
+https://static.wixstatic.com/media/c837a6_84ccd1fe37334909b51b3c18554e435f~mv2.png/v1/fill/w_256,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/visual_content_nice_doctor_smiling_talking_on_a_video_call_on_a_ea751a39-6d5b-465e-8e0a-d0.png|customer-michelle.png
+https://static.wixstatic.com/media/c837a6_f14725a2afd74974aba598fe2e1b7768~mv2.jpg/v1/fill/w_600,h_800,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/mayagi_lifestyle_commercial_photography_a_african-american_fema_91309390-f06e-46c5-99c9-02.jpg|customer-ben.jpg
+https://static.wixstatic.com/media/c837a6_74ea27ffd311419687e4535883fbbdc4~mv2.png/v1/fill/w_296,h_296,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Imoge.png|partner-imoge.png
+https://static.wixstatic.com/media/c837a6_96b83f5b902144eda3105f59cc62d390~mv2.png/v1/fill/w_276,h_280,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Stella%20Maris.png|partner-stella-maris.png
+https://static.wixstatic.com/media/c837a6_e93e39b7211d49359aaaa86d641834ce~mv2.png/v1/fill/w_800,h_804,al_c,q_85,enc_avif,quality_auto/Frame%2069.png|privacy-illustration.png
+https://static.wixstatic.com/media/c837a6_43e35c9bb1554c149569aff0bdfa97ad~mv2.png/v1/fill/w_296,h_296,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Gasparyan.png|partner-gasparyan.png
+https://static.wixstatic.com/media/c837a6_65ebb1d7e6cc4afc8b24550226f2eba3~mv2.png/v1/fill/w_296,h_296,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Frame%2093.png|partner-frame93.png
