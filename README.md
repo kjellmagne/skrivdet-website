@@ -11,6 +11,8 @@ Vite/React rebuild of the Wix Studio page at:
 - `src/main.jsx` – React bootstrap
 - `styles.css` – shared site styling used by React
 - `public/assets/` – downloaded media from the Wix page
+- `Dockerfile` – production image build
+- `.github/workflows/docker-publish.yml` – GHCR publish workflow
 
 ## Notes
 
@@ -23,3 +25,28 @@ Vite/React rebuild of the Wix Studio page at:
 - `npm run dev`
 - `npm run build`
 - `npm run preview`
+
+## Docker
+
+Build the image locally:
+
+- `docker build -t ulfy:local .`
+
+Run it locally:
+
+- `docker run --rm -p 8080:80 ulfy:local`
+
+Then open `http://localhost:8080`.
+
+## Pull on a server
+
+After GitHub Actions publishes the image, pull it from GHCR:
+
+- `docker pull ghcr.io/kjellmagne/ulfy:latest`
+- `docker run -d --name ulfy -p 80:80 --restart unless-stopped ghcr.io/kjellmagne/ulfy:latest`
+
+If the package stays private, the server must log in first:
+
+- `echo "<github_token>" | docker login ghcr.io -u kjellmagne --password-stdin`
+
+If you want anonymous pulls, change the published package visibility to public in GitHub after the first image push.
