@@ -232,11 +232,11 @@ body.is-scrolled .site-header {
   gap: 0.5rem;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary), #506dff);
-  color: white;
+  background: linear-gradient(135deg, #f5f7fb, #e8edf5);
+  color: #3d4a5d;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 15px 30px rgba(40, 75, 255, 0.2);
+  box-shadow: 0 15px 30px rgba(148, 163, 184, 0.22);
   transition:
     transform 0.22s ease,
     box-shadow 0.22s ease,
@@ -469,6 +469,11 @@ body.is-scrolled .site-header {
   transform-origin: center center;
 }
 
+.hero-visual .phone-viewport img {
+  height: 677px;
+  width: 88%;
+}
+
 .phone-frame {
   z-index: 2;
   object-fit: contain;
@@ -682,7 +687,7 @@ body.is-scrolled .site-header {
   .button:hover,
   .button-small:hover {
     transform: translateY(-2px);
-    box-shadow: 0 22px 38px rgba(40, 75, 255, 0.28);
+    box-shadow: 0 22px 38px rgba(148, 163, 184, 0.28);
     filter: saturate(1.03);
   }
 

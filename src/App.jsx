@@ -477,9 +477,6 @@ function HomePage() {
                   </a>
                 ))}
               </div>
-              <p className="subtle-note">
-                Nedlastingslenkene peker til samme plassholder som på den publiserte Wix-siden.
-              </p>
             </div>
 
             <div className="hero-visual" aria-hidden="true" data-animate="up-lg" data-delay="120">
