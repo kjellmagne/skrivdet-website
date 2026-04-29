@@ -484,7 +484,9 @@ function HomePage() {
 
             <div className="hero-visual" aria-hidden="true" data-animate="up-lg" data-delay="120">
               <div className="phone-stack" data-parallax="0.14">
-                <img className="phone-screen" src={asset("assets/phone-screenshot.png")} alt="" />
+                <div className="phone-viewport">
+                  <img className="phone-screen" src={asset("assets/phone-screenshot.png")} alt="" />
+                </div>
                 <img className="phone-frame" src={asset("assets/phone-frame.png")} alt="" />
               </div>
             </div>

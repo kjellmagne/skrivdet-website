@@ -444,22 +444,34 @@ body.is-scrolled .site-header {
   --parallax-y: 0px;
 }
 
-.phone-screen,
+.phone-viewport,
 .phone-frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+}
+
+.phone-viewport {
+  inset: 3.2% 7.4% 3.1%;
+  border-radius: 13.5% / 6.8%;
+  overflow: hidden;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .phone-screen {
-  transform: scale(0.64);
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.015);
+  transform-origin: center center;
 }
 
 .phone-frame {
   z-index: 2;
+  object-fit: contain;
   filter: drop-shadow(0 28px 50px rgba(17, 32, 56, 0.25));
 }
 
