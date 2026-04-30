@@ -18,6 +18,12 @@ const storeLinks = [
   },
 ];
 
+const phoneScreens = [
+  asset("assets/phone-screenshot.png"),
+  asset("assets/phone-screen-templates.png"),
+  asset("assets/phone-screen-recording.png"),
+];
+
 const featureCards = [
   {
     delay: 20,
@@ -406,6 +412,7 @@ function useSiteEffects() {
 
 function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const closeMenu = () => setIsOpen(false);
@@ -433,6 +440,13 @@ function SiteHeader() {
           <a href="#om" onClick={() => setIsOpen(false)}>Om</a>
           <a href="#priser" onClick={() => setIsOpen(false)}>Produkter og priser</a>
           <a href="#hvordan" onClick={() => setIsOpen(false)}>Hvordan virker dette?</a>
+          <Link
+            to="/system-architecture"
+            className={location.pathname === "/system-architecture" ? "is-active" : undefined}
+            onClick={() => setIsOpen(false)}
+          >
+            Systemarkitektur
+          </Link>
           <a href="#download" onClick={() => setIsOpen(false)}>
             Last ned Ulfy
           </a>
@@ -455,6 +469,7 @@ function SiteFooter() {
         </div>
         <div>
           <h3>Retningslinjer</h3>
+          <Link to="/system-architecture">Systemarkitektur</Link>
           <Link to="/privacy-policy">Personvernerklæring</Link>
           <Link to="/accessibility-statement">Tilgjengelighetserklæring</Link>
         </div>
@@ -469,9 +484,22 @@ function SiteFooter() {
 }
 
 function HomePage() {
+  const [activePhoneScreen, setActivePhoneScreen] = useState(0);
   const [message, setMessage] = useState("");
 
   useSiteEffects();
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return undefined;
+    }
+
+    const interval = window.setInterval(() => {
+      setActivePhoneScreen((current) => (current + 1) % phoneScreens.length);
+    }, 3200);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   const formFields = useMemo(
     () => [
@@ -532,7 +560,14 @@ function HomePage() {
             <div className="hero-visual" aria-hidden="true" data-animate="up-lg" data-delay="120">
               <div className="phone-stack" data-parallax="0.14">
                 <div className="phone-viewport">
-                  <img className="phone-screen" src={asset("assets/phone-screenshot.png")} alt="" />
+                  {phoneScreens.map((screen, index) => (
+                    <img
+                      key={screen}
+                      className={`phone-screen${index === activePhoneScreen ? " is-active" : ""}`}
+                      src={screen}
+                      alt=""
+                    />
+                  ))}
                 </div>
                 <img className="phone-frame" src={asset("assets/phone-frame.png")} alt="" />
               </div>
@@ -730,6 +765,41 @@ function PolicyPage({ title, children }) {
   );
 }
 
+function ArchitecturePage() {
+  return (
+    <>
+      <SiteHeader />
+      <main className="page-shell architecture-shell">
+        <article className="page-card architecture-card">
+          <h1>Systemdesign og arkitektur</h1>
+          <p>
+            Denne oversikten viser Ulfys overordnede nettverksarkitektur og dataflyt mellom
+            klient, internett, sikkerhetsgrense, interne tjenester og eksterne AI-tilbydere.
+          </p>
+          <a
+            className="architecture-link"
+            href={asset("assets/system-architecture.png")}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Åpne bildet i full størrelse
+          </a>
+          <figure className="architecture-figure">
+            <img
+              className="architecture-image"
+              src={asset("assets/system-architecture.png")}
+              alt="Ulfy systemdesign og arkitektur med nettverksarkitektur og dataflyt"
+            />
+          </figure>
+          <Link className="back-link" to="/">
+            Tilbake til forsiden
+          </Link>
+        </article>
+      </main>
+    </>
+  );
+}
+
 function ScrollToTop() {
   const location = useLocation();
 
@@ -777,6 +847,7 @@ export default function App() {
             </PolicyPage>
           }
         />
+        <Route path="/system-architecture" element={<ArchitecturePage />} />
       </Routes>
     </>
   );

@@ -203,13 +203,15 @@ body.is-scrolled .site-header {
 }
 
 .site-nav a:hover,
-.site-nav a:focus-visible {
+.site-nav a:focus-visible,
+.site-nav a.is-active {
   color: var(--text);
   transform: translateY(-1px);
 }
 
 .site-nav a:hover::after,
-.site-nav a:focus-visible::after {
+.site-nav a:focus-visible::after,
+.site-nav a.is-active::after {
   transform: scaleX(1);
 }
 
@@ -469,12 +471,20 @@ body.is-scrolled .site-header {
 }
 
 .phone-screen {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
   transform: scale(1.015);
   transform-origin: center center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.phone-screen.is-active {
+  opacity: 1;
 }
 
 .hero-visual .phone-viewport img {
@@ -798,6 +808,36 @@ body.is-scrolled .site-header {
   color: var(--primary);
 }
 
+.architecture-shell {
+  align-items: start;
+}
+
+.architecture-card {
+  width: min(calc(100% - 2rem), 1320px);
+}
+
+.architecture-link {
+  display: inline-flex;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.architecture-figure {
+  margin: 2rem 0 0;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.architecture-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 960px) {
   .hero-grid,
   .split-layout,
@@ -864,6 +904,11 @@ body.is-scrolled .site-header {
   .section,
   .hero {
     padding: 4rem 0;
+  }
+
+  .architecture-card {
+    width: min(calc(100% - 1rem), 1320px);
+    padding: 1.25rem;
   }
 }
 
