@@ -26,17 +26,17 @@ const phoneScreens = [
 
 const featureCards = [
   {
-    delay: 20,
+    delay: 0,
     description: "Skreddersydde formater for avdelingsmøter, 1-til-1 eller tekniske diskusjoner.",
     title: "Smarte maler",
   },
   {
-    delay: 110,
+    delay: 220,
     description: "Markedsledende nøyaktighet, selv med dialekter og fagterminologi.",
     title: "Mist aldri et ord",
   },
   {
-    delay: 200,
+    delay: 440,
     description: "Se nøyaktig hvilke data som behandles og hvor de lagres til enhver tid.",
     title: "Full åpenhet",
   },
@@ -163,6 +163,7 @@ function useSiteEffects() {
     const parallaxNodes = [...document.querySelectorAll("[data-parallax]")];
     const parallaxSections = [...document.querySelectorAll("[data-section-parallax]")];
     const animatedNodes = [...document.querySelectorAll("[data-animate]")];
+    const howSection = document.querySelector(".how-section");
 
     if (!prefersReducedMotion) {
       body.classList.add("motion-enabled");
@@ -400,10 +401,35 @@ function useSiteEffects() {
       });
     }
 
+    let howSectionObserver;
+    if (howSection && !prefersReducedMotion) {
+      howSectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add("is-sequenced");
+            howSectionObserver?.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.5,
+          rootMargin: "-8% 0px -18% 0px",
+        }
+      );
+
+      howSectionObserver.observe(howSection);
+    } else if (howSection) {
+      howSection.classList.add("is-sequenced");
+    }
+
     return () => {
       body.classList.remove("motion-enabled", "is-scrolled");
       window.removeEventListener("scroll", syncScrollState);
       observer?.disconnect();
+      howSectionObserver?.disconnect();
       cleanupPointer();
       removeParallaxListeners.forEach((cleanup) => cleanup());
     };
@@ -437,9 +463,11 @@ function SiteHeader() {
           Meny
         </button>
         <nav id="site-nav" className={`site-nav${isOpen ? " is-open" : ""}`} aria-label="Hovedmeny">
-          <a href="#om" onClick={() => setIsOpen(false)}>Om</a>
-          <a href="#priser" onClick={() => setIsOpen(false)}>Produkter og priser</a>
-          <a href="#hvordan" onClick={() => setIsOpen(false)}>Hvordan virker dette?</a>
+          <a href="#om" onClick={() => setIsOpen(false)}>Om Ulfy</a>
+          <a href="#hvordan" onClick={() => setIsOpen(false)}>Hvordan det fungerer</a>
+          <a href="#sikkerhet" onClick={() => setIsOpen(false)}>Sikkerhet</a>
+          <a href="#priser" onClick={() => setIsOpen(false)}>Priser</a>
+          <a href="#kontakt" onClick={() => setIsOpen(false)}>Kontakt</a>
           <Link
             to="/system-architecture"
             className={location.pathname === "/system-architecture" ? "is-active" : undefined}
@@ -575,7 +603,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="section" id="om">
+        <section className="section about-section" id="om">
           <div className="container">
             <div className="section-heading" data-animate="up">
               <p className="eyebrow">Det som pleide å ta timer, tar nå sekunder</p>
@@ -583,6 +611,7 @@ function HomePage() {
             </div>
             <div className="info-grid">
               <article className="card card-large" data-animate="left">
+                <h3>Ferdig dokumentasjon, automatisk</h3>
                 <p>
                   Slipp notatblokken og vær 100 % til stede. Ulfy fanger samtalen og
                   strukturerer referatet automatisk – enten det er snakk om strategimøter
@@ -608,7 +637,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="section section-alt" id="hvordan" data-section-parallax="-0.045">
+        <section className="section how-section" id="hvordan" data-section-parallax="-0.045">
           <div className="container">
             <div className="section-heading" data-animate="up">
               <p className="eyebrow">Hvordan det fungerer</p>
@@ -616,7 +645,11 @@ function HomePage() {
             </div>
             <div className="feature-grid">
               {featureCards.map((card) => (
-                <article key={card.title} className="feature-card" data-animate="up" data-delay={card.delay}>
+                <article
+                  key={card.title}
+                  className="feature-card how-feature-card"
+                  style={{ "--enter-delay": `${card.delay}ms` }}
+                >
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
                 </article>
@@ -625,7 +658,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="section security-section" data-section-parallax="0.065">
+        <section className="section security-section" id="sikkerhet" data-section-parallax="0.065">
           <div className="container split-layout">
             <div data-animate="left">
               <p className="eyebrow">Best når det kommer til sikkerhet og personvern</p>
@@ -658,7 +691,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="section section-alt" id="priser" data-section-parallax="0.05">
+        <section className="section pricing-section" id="priser" data-section-parallax="0.05">
           <div className="container">
             <div className="section-heading" data-animate="up">
               <p className="eyebrow">Simple. Easy. Healthy.</p>
@@ -678,7 +711,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="section">
+        <section className="section partners-section">
           <div className="container split-layout partners-layout">
             <div data-animate="left">
               <p className="eyebrow">Samarbeid og infrastruktur</p>
@@ -723,7 +756,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="section contact-section">
+        <section className="section contact-section" id="kontakt">
           <div className="container split-layout">
             <div data-animate="left">
               <p className="eyebrow">Vi er her til å hjelpe deg</p>
@@ -737,7 +770,7 @@ function HomePage() {
                   <input type={field.type} name={field.name} required={field.required} />
                 </label>
               ))}
-              <button className="button" type="submit">Send</button>
+              <button className="button contact-submit" type="submit">Send</button>
               <p className="form-message" id="form-message" aria-live="polite">{message}</p>
             </form>
           </div>
