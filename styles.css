@@ -434,6 +434,10 @@ body.is-scrolled .site-header {
   width: auto;
 }
 
+#app-store-download {
+  scroll-margin-top: 8rem;
+}
+
 .store-link-disabled {
   cursor: not-allowed;
   filter: grayscale(1);
@@ -753,10 +757,13 @@ body.motion-enabled .how-section.is-sequenced .how-feature-card {
   gap: 1.15rem;
 }
 
-.partner-grid img {
-  width: 100%;
+.partner-logo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 132px;
+  padding: 1rem 1.1rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 250, 251, 0.92));
-  padding: 1rem;
   border: 1px solid var(--line-soft);
   border-radius: var(--radius-md);
   box-shadow: 0 18px 38px rgba(21, 35, 67, 0.08);
@@ -765,6 +772,13 @@ body.motion-enabled .how-section.is-sequenced .how-feature-card {
     transform 0.24s ease,
     box-shadow 0.24s ease,
     border-color 0.24s ease;
+}
+
+.partner-logo-card img {
+  width: 100%;
+  max-height: 72px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .testimonials-section {
@@ -897,7 +911,7 @@ body.motion-enabled .how-section.is-sequenced .how-feature-card {
     box-shadow: 0 28px 60px rgba(21, 35, 67, 0.16);
   }
 
-  .partner-grid img:hover {
+  .partner-logo-card:hover {
     transform: translate3d(0, calc(var(--parallax-y, 0px) - 4px), 0);
     border-color: rgba(72, 114, 128, 0.24);
     box-shadow: 0 22px 46px rgba(21, 35, 67, 0.14);
@@ -1082,7 +1096,7 @@ body.motion-enabled .how-section.is-sequenced .how-feature-card {
   .pricing-card,
   .testimonial-card,
   .mini-card,
-  .partner-grid img,
+  .partner-logo-card,
   .phone-stack,
   .hero-visual::before,
   .hero::after {

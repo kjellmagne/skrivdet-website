@@ -90,10 +90,10 @@ const pricingCards = [
 ];
 
 const partnerLogos = [
-  { alt: "Imoge", parallax: "0.08", src: asset("assets/partner-imoge.png") },
-  { alt: "Stella Maris", parallax: "0.1", src: asset("assets/partner-stella-maris.png") },
-  { alt: "Gasparyan", parallax: "0.12", src: asset("assets/partner-gasparyan.png") },
-  { alt: "Partnerlogo", parallax: "0.09", src: asset("assets/partner-frame93.png") },
+  { alt: "Kvasetech", parallax: "0.08", src: asset("assets/partner-kvasetech.png") },
+  { alt: "Lefdal Mine Datacenter", parallax: "0.1", src: asset("assets/partner-lefdal-mine.png") },
+  { alt: "Norwegian Datacenter Industry", parallax: "0.12", src: asset("assets/partner-ndi.webp") },
+  { alt: "Serit", parallax: "0.09", src: asset("assets/partner-serit.jpg") },
 ];
 
 const testimonials = [
@@ -468,7 +468,6 @@ function SiteHeader() {
           <a href="#om" onClick={() => setIsOpen(false)}>Om</a>
           <a href="#hvordan" onClick={() => setIsOpen(false)}>Hvordan det fungerer</a>
           <a href="#sikkerhet" onClick={() => setIsOpen(false)}>Sikkerhet</a>
-          <a href="#priser" onClick={() => setIsOpen(false)}>Priser</a>
           <a href="#kontakt" onClick={() => setIsOpen(false)}>Kontakt</a>
           <Link
             to="/system-architecture"
@@ -477,7 +476,7 @@ function SiteHeader() {
           >
             Systemarkitektur
           </Link>
-          <a href="#download" onClick={() => setIsOpen(false)}>
+          <a href="#app-store-download" onClick={() => setIsOpen(false)}>
             Last ned
           </a>
         </nav>
@@ -569,6 +568,7 @@ function HomePage() {
                       key={link.alt}
                       className="store-link"
                       href={link.href}
+                      id={link.alt === "Last ned på App Store" ? "app-store-download" : undefined}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -740,7 +740,9 @@ function HomePage() {
             </div>
             <div className="partner-grid" data-animate="fade" data-delay="120">
               {partnerLogos.map((logo) => (
-                <img key={logo.alt} src={logo.src} alt={logo.alt} data-parallax={logo.parallax} />
+                <div key={logo.alt} className="partner-logo-card" data-parallax={logo.parallax}>
+                  <img src={logo.src} alt={logo.alt} />
+                </div>
               ))}
             </div>
           </div>
