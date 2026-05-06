@@ -442,6 +442,7 @@ function useSiteEffects() {
 function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const homeSectionHref = (hash) => (location.pathname === "/" ? hash : `/${hash}`);
 
   useEffect(() => {
     const closeMenu = () => setIsOpen(false);
@@ -452,7 +453,7 @@ function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label={`${brandName} hjem`}>
+        <a className="brand" href={homeSectionHref("#top")} aria-label={`${brandName} hjem`}>
           <img className="brand-logo" src={brandLogoHorizontal} alt={brandName} />
         </a>
         <button
@@ -465,18 +466,18 @@ function SiteHeader() {
           Meny
         </button>
         <nav id="site-nav" className={`site-nav${isOpen ? " is-open" : ""}`} aria-label="Hovedmeny">
-          <a href="#om" onClick={() => setIsOpen(false)}>Om</a>
-          <a href="#hvordan" onClick={() => setIsOpen(false)}>Hvordan det fungerer</a>
-          <a href="#sikkerhet" onClick={() => setIsOpen(false)}>Sikkerhet</a>
-          <a href="#kontakt" onClick={() => setIsOpen(false)}>Kontakt</a>
+          <a href={homeSectionHref("#om")} onClick={() => setIsOpen(false)}>Om</a>
+          <a href={homeSectionHref("#hvordan")} onClick={() => setIsOpen(false)}>Hvordan det fungerer</a>
+          <a href={homeSectionHref("#sikkerhet")} onClick={() => setIsOpen(false)}>Sikkerhet</a>
+          <a href={homeSectionHref("#kontakt")} onClick={() => setIsOpen(false)}>Kontakt</a>
           <Link
             to="/system-architecture"
             className={location.pathname === "/system-architecture" ? "is-active" : undefined}
             onClick={() => setIsOpen(false)}
           >
-            Systemarkitektur
+            Arkitektur
           </Link>
-          <a href="#app-store-download" onClick={() => setIsOpen(false)}>
+          <a href={homeSectionHref("#app-store-download")} onClick={() => setIsOpen(false)}>
             Last ned
           </a>
         </nav>
@@ -490,21 +491,21 @@ function SiteFooter() {
     <footer className="site-footer" data-animate="fade">
       <div className="container footer-grid">
         <div>
-          <a className="brand footer-brand" href="#top">
+          <a className="brand footer-brand" href={location.pathname === "/" ? "#top" : "/#top"}>
             <img className="brand-logo brand-logo-footer" src={brandLogoHorizontal} alt={brandName} />
           </a>
           <p>© 2026 by Kvasetech AS</p>
         </div>
         <div>
           <h3>Retningslinjer</h3>
-          <Link to="/system-architecture">Systemarkitektur</Link>
+          <Link to="/system-architecture">Arkitektur</Link>
           <Link to="/privacy-policy">Personvernerklæring</Link>
           <Link to="/accessibility-statement">Tilgjengelighetserklæring</Link>
         </div>
         <div>
           <h3>Videre</h3>
-          <a href={`${import.meta.env.BASE_URL}#kontakt`}>Kontakt oss</a>
-          <Link to="/system-architecture">Se systemarkitektur</Link>
+          <a href={location.pathname === "/" ? "#kontakt" : "/#kontakt"}>Kontakt oss</a>
+          <Link to="/system-architecture">Se arkitektur</Link>
         </div>
       </div>
     </footer>
@@ -804,9 +805,6 @@ function PolicyPage({ title, children }) {
         <article className="page-card">
           <h1>{title}</h1>
           {children}
-          <Link className="back-link" to="/">
-            Tilbake til forsiden
-          </Link>
         </article>
       </main>
     </>
@@ -819,25 +817,16 @@ function ArchitecturePage() {
       <SiteHeader />
       <main className="page-shell architecture-shell">
         <article className="page-card architecture-card">
-          <img className="page-brandmark" src={brandLogoStacked} alt={brandName} />
-          <h1>Systemdesign og arkitektur</h1>
+          <h1>Arkitektur</h1>
           <p>
             Denne oversikten viser skrivDETs overordnede nettverksarkitektur og dataflyt mellom
             klient, internett, sikkerhetsgrense, interne tjenester og eksterne AI-tilbydere.
           </p>
-          <a
-            className="architecture-link"
-            href={asset("assets/system-architecture.png")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Åpne bildet i full størrelse
-          </a>
           <figure className="architecture-figure">
             <img
               className="architecture-image"
               src={asset("assets/system-architecture.png")}
-              alt="skrivDET systemdesign og arkitektur med nettverksarkitektur og dataflyt"
+              alt="skrivDET arkitektur med nettverksarkitektur og dataflyt"
             />
           </figure>
           <Link className="back-link" to="/">
