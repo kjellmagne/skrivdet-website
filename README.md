@@ -1,8 +1,6 @@
 # skrivDET website
 
-Vite/React rebuild of the Wix Studio landing page at:
-
-`https://kjellmagnegabriels6.wixstudio.com/my-site-1?rc=test-site`
+Vite/React site for skrivDET by Kvasetech AS.
 
 ## Files
 
@@ -10,14 +8,14 @@ Vite/React rebuild of the Wix Studio landing page at:
 - `src/App.jsx` – React app and routes
 - `src/main.jsx` – React bootstrap
 - `styles.css` – shared site styling used by React
-- `public/assets/` – downloaded media from the Wix page
+- `public/assets/` – images, logos and product screenshots used by the site
 - `Dockerfile` – production image build
 - `.github/workflows/docker-publish.yml` – GHCR publish workflow
 
 ## Notes
 
-- Store download buttons keep the same placeholder target used on the published Wix page.
-- Privacy and accessibility pages now live as React routes because the linked Wix pages returned 404 on `2026-04-26`.
+- Store download buttons currently point to the main page until the final store URLs are ready.
+- Privacy and accessibility pages live as React routes within the site.
 
 ## Run locally
 

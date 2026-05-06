@@ -10,13 +10,13 @@ const storeLinks = [
   {
     alt: "Last ned på App Store",
     available: true,
-    href: "https://www.wix.com/templateslp/studio-external-link",
+    href: "/",
     src: asset("assets/apple-store.png"),
   },
   {
     alt: "Last ned på Google Play",
     available: false,
-    href: "https://www.wix.com/templateslp/studio-external-link",
+    href: "/",
     src: asset("assets/google-play.png"),
   },
 ];
@@ -49,12 +49,12 @@ const securityCards = [
   {
     icon: asset("assets/icon-affordable.png"),
     text: "Lokal databehandling med tydelig eierskap til informasjonen.",
-    title: "Faktisk GDPR-etterlevelse",
+    title: "GDPR-etterlevelse i praksis",
   },
   {
     icon: asset("assets/icon-subscription.png"),
     text: "Data lagres i norske datasentre med høy grad av kontroll.",
-    title: "Fri fra Cloud Act-trussel",
+    title: "Skjermet fra CLOUD Act",
   },
   {
     icon: asset("assets/icon-affordable.png"),
@@ -64,7 +64,7 @@ const securityCards = [
   {
     icon: asset("assets/icon-subscription.png"),
     text: "Full åpenhet rundt behandling, lagring og tilgang til data.",
-    title: "Best på personvern",
+    title: "Maksimalt personvern",
   },
 ];
 
@@ -79,7 +79,7 @@ const pricingCards = [
     delay: 110,
     icon: "shield",
     text: "Et tydelig alternativ for virksomheter som ikke kan kompromisse på sikkerhet.",
-    title: "Best personvern",
+    title: "Personvern i toppklasse",
   },
   {
     delay: 200,
@@ -107,7 +107,7 @@ const testimonials = [
     delay: 110,
     image: asset("assets/customer-michelle.png"),
     name: "Pilotkunde i offentlig sektor",
-    quote: "Det viktigste for oss er kontroll på dataene, og at oppsummeringen faktisk blir nyttig for teamet.",
+    quote: "Det viktigste for oss er kontroll over dataene, og at oppsummeringen faktisk blir nyttig for teamet.",
   },
   {
     delay: 200,
@@ -557,7 +557,7 @@ function HomePage() {
         <section className="hero" id="hero" data-section-parallax="0.11">
           <div className="container hero-grid">
             <div className="hero-copy" data-animate="left">
-              <p className="eyebrow">Hver samtale, perfekt oppsummer</p>
+              <p className="eyebrow">Hver samtale, perfekt oppsummert</p>
               <h1>Bruk tiden din på jobben, ikke på papirarbeid.</h1>
               <p className="lead">
                 skrivDET tar notatene for deg med ekstrem presisjon og norsk datasikkerhet.
@@ -620,7 +620,7 @@ function HomePage() {
         <section className="section about-section" id="om">
           <div className="container">
             <div className="section-heading" data-animate="up">
-              <p className="eyebrow">Det som pleide å ta timer, tar nå sekunder</p>
+              <p className="eyebrow">Det som før tok timer, tar nå sekunder</p>
               <h2>skrivDET ferdigstiller dokumentasjonen din idet møtet er over.</h2>
             </div>
             <div className="info-grid">
@@ -675,12 +675,12 @@ function HomePage() {
         <section className="section security-section" id="sikkerhet" data-section-parallax="0.065">
           <div className="container split-layout">
             <div data-animate="left">
-              <p className="eyebrow">Best når det kommer til sikkerhet og personvern</p>
+              <p className="eyebrow">Når sikkerhet og personvern er avgjørende</p>
               <h2>Digital suverenitet og kontroll over egne data.</h2>
               <p>
-                skrivDET prosesserer alt lokalt eller på norske servere. Mens konkurrenter
-                bruker amerikanske skytjenester underlagt CLOUD Act, er budskapet her
-                tydelig: absolutt digital suverenitet og full kontroll over egne data.
+                skrivDET prosesserer alt lokalt eller på norske servere. Der andre
+                løsninger er avhengige av amerikanske skytjenester underlagt CLOUD Act,
+                gir skrivDET deg digital suverenitet og full kontroll over egne data.
               </p>
               <div className="bullet-grid">
                 {securityCards.map((card) => (
@@ -729,7 +729,7 @@ function HomePage() {
           <div className="container split-layout partners-layout">
             <div data-animate="left">
               <p className="eyebrow">Samarbeid og infrastruktur</p>
-              <h2>Samarbeid med ledende selskaper innen IT-infrastruktur</h2>
+              <h2>Samarbeid med ledende aktører innen IT-infrastruktur</h2>
               <p>
                 Gjennom partnerskap med ledende norske IT-infrastrukturselskaper sørger
                 vi for at dine data lagres og behandles i Norge.
@@ -763,7 +763,7 @@ function HomePage() {
                   data-animate="up"
                   data-delay={testimonial.delay}
                 >
-                  <img src={testimonial.image} alt={testimonial.name === "Ola Normann" ? testimonial.name : "Kundeportrett"} />
+                  <img src={testimonial.image} alt={testimonial.name} />
                   <blockquote>“{testimonial.quote}”</blockquote>
                   <p>— {testimonial.name}</p>
                 </article>
@@ -776,8 +776,8 @@ function HomePage() {
           <div className="container split-layout">
             <div data-animate="left">
               <p className="eyebrow">Vi er her til å hjelpe deg</p>
-              <h2>Har du spørsmål? Trenger hjelp?</h2>
-              <p>Skriv inn din kontaktinformasjon og vi tar kontakt.</p>
+              <h2>Har du spørsmål eller trenger hjelp?</h2>
+              <p>Legg igjen kontaktinformasjonen din, så tar vi kontakt.</p>
             </div>
             <form className="contact-form" id="contact-form" data-animate="up-lg" data-delay="80" onSubmit={handleSubmit}>
               {formFields.map((field) => (
@@ -859,7 +859,7 @@ export default function App() {
           element={
             <PolicyPage title="Personvernerklæring">
               <p>
-                Denne lokale kopien gjenskaper strukturen fra Wix-siden, men samler ikke inn eller
+                Denne lokale kopien gjenskaper nettstedets struktur, men samler ikke inn eller
                 sender personopplysninger noe sted. Kontaktskjemaet lagres kun lokalt i nettleseren
                 for demonstrasjon.
               </p>
