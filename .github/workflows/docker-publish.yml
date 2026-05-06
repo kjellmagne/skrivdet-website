@@ -40,7 +40,7 @@ jobs:
             type=ref,event=tag
           labels: |
             org.opencontainers.image.title=ulfy
-            org.opencontainers.image.description=Vite/React container image for the Ulfy landing page
+            org.opencontainers.image.description=Vite/React container image for the skrivDET landing page
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
 
       - name: Build and push Docker image
