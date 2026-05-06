@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+const brandName = "skrivDET";
+const brandLogoHorizontal = asset("assets/skrivdet-v2.png");
+const brandLogoStacked = asset("assets/skrivdet-v3.png");
 
 const storeLinks = [
   {
@@ -19,9 +22,9 @@ const storeLinks = [
 ];
 
 const phoneScreens = [
-  asset("assets/phone-screenshot.png"),
-  asset("assets/phone-screen-templates.png"),
-  asset("assets/phone-screen-recording.png"),
+  { duration: 4400, src: asset("assets/phone-screen-1-splash.png") },
+  { duration: 3000, src: asset("assets/phone-screen-2-recording.png") },
+  { duration: 3000, src: asset("assets/phone-screen-3-templates.png") },
 ];
 
 const featureCards = [
@@ -97,20 +100,20 @@ const testimonials = [
   {
     delay: 20,
     image: asset("assets/customer-ola.jpg"),
-    name: "Ola Normann",
-    quote: "Utrolig enkelt å bruke. Vi bruker det til alt, og sparer enormt med tid.",
+    name: "Teamleder i helsetjenesten",
+    quote: "skrivDET gjør det enklere å være til stede i samtalen og få dokumentasjonen ferdig raskt etterpå.",
   },
   {
     delay: 110,
     image: asset("assets/customer-michelle.png"),
-    name: "Referanse kommer",
-    quote: "Flere kundehistorier og tilbakemeldinger publiseres snart.",
+    name: "Pilotkunde i offentlig sektor",
+    quote: "Det viktigste for oss er kontroll på dataene, og at oppsummeringen faktisk blir nyttig for teamet.",
   },
   {
     delay: 200,
     image: asset("assets/customer-ben.jpg"),
-    name: "Kundehistorie kommer",
-    quote: "Vi legger til flere kundeeksempler så snart de er klare.",
+    name: "Fagleder i helse",
+    quote: "Vi sparer tid hver uke fordi skrivDET tar hånd om strukturen, uten at vi mister oversikten.",
   },
 ];
 
@@ -449,9 +452,8 @@ function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label="Ulfy hjem">
-          <span className="brand-mark">U</span>
-          <span>Ulfy</span>
+        <a className="brand" href="#top" aria-label={`${brandName} hjem`}>
+          <img className="brand-logo" src={brandLogoHorizontal} alt={brandName} />
         </a>
         <button
           className="menu-toggle"
@@ -463,7 +465,7 @@ function SiteHeader() {
           Meny
         </button>
         <nav id="site-nav" className={`site-nav${isOpen ? " is-open" : ""}`} aria-label="Hovedmeny">
-          <a href="#om" onClick={() => setIsOpen(false)}>Om Ulfy</a>
+          <a href="#om" onClick={() => setIsOpen(false)}>Om</a>
           <a href="#hvordan" onClick={() => setIsOpen(false)}>Hvordan det fungerer</a>
           <a href="#sikkerhet" onClick={() => setIsOpen(false)}>Sikkerhet</a>
           <a href="#priser" onClick={() => setIsOpen(false)}>Priser</a>
@@ -476,7 +478,7 @@ function SiteHeader() {
             Systemarkitektur
           </Link>
           <a href="#download" onClick={() => setIsOpen(false)}>
-            Last ned Ulfy
+            Last ned
           </a>
         </nav>
       </div>
@@ -490,8 +492,7 @@ function SiteFooter() {
       <div className="container footer-grid">
         <div>
           <a className="brand footer-brand" href="#top">
-            <span className="brand-mark">U</span>
-            <span>Ulfy</span>
+            <img className="brand-logo brand-logo-footer" src={brandLogoHorizontal} alt={brandName} />
           </a>
           <p>© 2026 by Kvasetech AS</p>
         </div>
@@ -502,9 +503,9 @@ function SiteFooter() {
           <Link to="/accessibility-statement">Tilgjengelighetserklæring</Link>
         </div>
         <div>
-          <h3>Sosiale medier</h3>
-          <a href="https://www.facebook.com/WixStudio" target="_blank" rel="noreferrer">Facebook</a>
-          <a href="https://www.instagram.com/wixstudio" target="_blank" rel="noreferrer">Instagram</a>
+          <h3>Videre</h3>
+          <a href={`${import.meta.env.BASE_URL}#kontakt`}>Kontakt oss</a>
+          <Link to="/system-architecture">Se systemarkitektur</Link>
         </div>
       </div>
     </footer>
@@ -513,6 +514,7 @@ function SiteFooter() {
 
 function HomePage() {
   const [activePhoneScreen, setActivePhoneScreen] = useState(0);
+  const [previousPhoneScreen, setPreviousPhoneScreen] = useState(0);
   const [message, setMessage] = useState("");
 
   useSiteEffects();
@@ -522,12 +524,13 @@ function HomePage() {
       return undefined;
     }
 
-    const interval = window.setInterval(() => {
+    const timeoutId = window.setTimeout(() => {
+      setPreviousPhoneScreen(activePhoneScreen);
       setActivePhoneScreen((current) => (current + 1) % phoneScreens.length);
-    }, 3200);
+    }, phoneScreens[activePhoneScreen].duration);
 
-    return () => window.clearInterval(interval);
-  }, []);
+    return () => window.clearTimeout(timeoutId);
+  }, [activePhoneScreen]);
 
   const formFields = useMemo(
     () => [
@@ -557,7 +560,7 @@ function HomePage() {
               <p className="eyebrow">Hver samtale, perfekt oppsummer</p>
               <h1>Bruk tiden din på jobben, ikke på papirarbeid.</h1>
               <p className="lead">
-                Vi tar notatene for deg med ekstrem presisjon og norsk datasikkerhet.
+                skrivDET tar notatene for deg med ekstrem presisjon og norsk datasikkerhet.
               </p>
               <div className="hero-actions" id="download">
                 {storeLinks.map((link) => (
@@ -587,17 +590,27 @@ function HomePage() {
 
             <div className="hero-visual" aria-hidden="true" data-animate="up-lg" data-delay="120">
               <div className="phone-stack" data-parallax="0.14">
-                <div className="phone-viewport">
+                <div
+                  className={`phone-viewport${previousPhoneScreen === 0 && activePhoneScreen == 1 ? " is-splash-handoff" : ""}`}
+                >
                   {phoneScreens.map((screen, index) => (
                     <img
-                      key={screen}
+                      key={screen.src}
                       className={`phone-screen${index === activePhoneScreen ? " is-active" : ""}`}
-                      src={screen}
+                      src={screen.src}
                       alt=""
                     />
                   ))}
                 </div>
                 <img className="phone-frame" src={asset("assets/phone-frame.png")} alt="" />
+                <div className="phone-indicators">
+                  {phoneScreens.map((screen, index) => (
+                    <span
+                      key={`indicator-${screen.src}`}
+                      className={`phone-indicator${index === activePhoneScreen ? " is-active" : ""}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -607,13 +620,13 @@ function HomePage() {
           <div className="container">
             <div className="section-heading" data-animate="up">
               <p className="eyebrow">Det som pleide å ta timer, tar nå sekunder</p>
-              <h2>Ulfy ferdigstiller dokumentasjonen din idet møtet er over.</h2>
+              <h2>skrivDET ferdigstiller dokumentasjonen din idet møtet er over.</h2>
             </div>
             <div className="info-grid">
               <article className="card card-large" data-animate="left">
                 <h3>Ferdig dokumentasjon, automatisk</h3>
                 <p>
-                  Slipp notatblokken og vær 100 % til stede. Ulfy fanger samtalen og
+                  Slipp notatblokken og vær 100 % til stede. skrivDET fanger samtalen og
                   strukturerer referatet automatisk – enten det er snakk om strategimøter
                   eller pasientsamtaler.
                 </p>
@@ -629,7 +642,7 @@ function HomePage() {
               <article className="card" data-animate="up" data-delay="160">
                 <h3>Struktur fra start</h3>
                 <p>
-                  Velg formålet med møtet før du starter, og la Ulfy trekke ut
+                  Velg formålet med møtet før du starter, og la skrivDET trekke ut
                   beslutninger, ansvarsområder og oppgaver i et ryddig dokument.
                 </p>
               </article>
@@ -664,7 +677,7 @@ function HomePage() {
               <p className="eyebrow">Best når det kommer til sikkerhet og personvern</p>
               <h2>Digital suverenitet og kontroll over egne data.</h2>
               <p>
-                Ulfy prosesserer alt lokalt eller på norske servere. Mens konkurrenter
+                skrivDET prosesserer alt lokalt eller på norske servere. Mens konkurrenter
                 bruker amerikanske skytjenester underlagt CLOUD Act, er budskapet her
                 tydelig: absolutt digital suverenitet og full kontroll over egne data.
               </p>
@@ -694,8 +707,8 @@ function HomePage() {
         <section className="section pricing-section" id="priser" data-section-parallax="0.05">
           <div className="container">
             <div className="section-heading" data-animate="up">
-              <p className="eyebrow">Simple. Easy. Healthy.</p>
-              <h2>Here to support you every step of the way.</h2>
+              <p className="eyebrow">Enkelt å ta i bruk. Enkelt å stole på.</p>
+              <h2>skrivDET er laget for å passe inn i hverdagen, ikke for å komplisere den.</h2>
             </div>
             <div className="pricing-grid">
               {pricingCards.map((card) => (
@@ -804,9 +817,10 @@ function ArchitecturePage() {
       <SiteHeader />
       <main className="page-shell architecture-shell">
         <article className="page-card architecture-card">
+          <img className="page-brandmark" src={brandLogoStacked} alt={brandName} />
           <h1>Systemdesign og arkitektur</h1>
           <p>
-            Denne oversikten viser Ulfys overordnede nettverksarkitektur og dataflyt mellom
+            Denne oversikten viser skrivDETs overordnede nettverksarkitektur og dataflyt mellom
             klient, internett, sikkerhetsgrense, interne tjenester og eksterne AI-tilbydere.
           </p>
           <a
@@ -821,7 +835,7 @@ function ArchitecturePage() {
             <img
               className="architecture-image"
               src={asset("assets/system-architecture.png")}
-              alt="Ulfy systemdesign og arkitektur med nettverksarkitektur og dataflyt"
+              alt="skrivDET systemdesign og arkitektur med nettverksarkitektur og dataflyt"
             />
           </figure>
           <Link className="back-link" to="/">
@@ -860,7 +874,7 @@ export default function App() {
               </p>
               <p>
                 Ved en produksjonslansering bør denne siden erstattes med den endelige
-                personvernerklæringen fra Ulfy eller Kvasetech AS.
+                personvernerklæringen fra skrivDET eller Kvasetech AS.
               </p>
             </PolicyPage>
           }
