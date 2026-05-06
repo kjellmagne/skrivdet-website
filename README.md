@@ -1,6 +1,6 @@
-# Ulfy local clone
+# skrivDET website
 
-Vite/React rebuild of the Wix Studio page at:
+Vite/React rebuild of the Wix Studio landing page at:
 
 `https://kjellmagnegabriels6.wixstudio.com/my-site-1?rc=test-site`
 
@@ -30,11 +30,11 @@ Vite/React rebuild of the Wix Studio page at:
 
 Build the image locally:
 
-- `docker build -t ulfy:local .`
+- `docker build -t skrivdet:local .`
 
 Run it locally:
 
-- `docker run --rm -p 8080:80 ulfy:local`
+- `docker run --rm -p 8080:80 skrivdet:local`
 
 Then open `http://localhost:8080`.
 
@@ -42,8 +42,8 @@ Then open `http://localhost:8080`.
 
 After GitHub Actions publishes the image, pull it from GHCR:
 
-- `docker pull ghcr.io/kjellmagne/ulfy:latest`
-- `docker run -d --name ulfy -p 80:80 --restart unless-stopped ghcr.io/kjellmagne/ulfy:latest`
+- `docker pull ghcr.io/kjellmagne/skrivdet:latest`
+- `docker run -d --name skrivdet -p 80:80 --restart unless-stopped ghcr.io/kjellmagne/skrivdet:latest`
 
 If the package stays private, the server must log in first:
 
