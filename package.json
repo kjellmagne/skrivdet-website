@@ -2,6 +2,7 @@
   "name": "website-skrivdet",
   "private": true,
   "version": "0.1.0",
+  "description": "skrivDET marketing website",
   "type": "module",
   "scripts": {
     "dev": "vite",

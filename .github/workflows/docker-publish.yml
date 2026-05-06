@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publish skrivDET Docker image
 
 on:
   push:
@@ -39,8 +39,8 @@ jobs:
             type=sha
             type=ref,event=tag
           labels: |
-            org.opencontainers.image.title=ulfy
-            org.opencontainers.image.description=Vite/React container image for the skrivDET landing page
+            org.opencontainers.image.title=skrivdet
+            org.opencontainers.image.description=Vite/React container image for the skrivDET website
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
 
       - name: Build and push Docker image
