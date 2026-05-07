@@ -811,6 +811,186 @@ function PolicyPage({ title, children }) {
   );
 }
 
+function PrivacyPolicyPage() {
+  return (
+    <PolicyPage title="Personvernerklæring for skrivDET">
+      <p className="policy-updated">Sist oppdatert: 7. mai 2026</p>
+      <p className="policy-lead">
+        skrivDET er laget for opptak, transkribering og strukturert notatskriving med høy grad
+        av kontroll. Denne erklæringen forklarer hvilke opplysninger som kan behandles når du
+        bruker iPhone-appen, aktiverer lisens, henter maler eller bruker tilkoblede språk- og
+        personverntjenester.
+      </p>
+
+      <div className="policy-summary">
+        <h2>Kort fortalt</h2>
+        <ul>
+          <li>skrivDET bruker ikke annonse-SDK-er og driver ikke tredjepartssporing for markedsføring.</li>
+          <li>Lisensaktivering sender enhets- og lisensdata til skrivDET-backend for å holde appen aktiv og riktig konfigurert.</li>
+          <li>Opptak, transkripsjoner og utkast behandles lokalt eller av de tale-, språk- og personverntjenestene du eller organisasjonen din velger.</li>
+        </ul>
+      </div>
+
+      <section className="policy-section">
+        <h2>1. Behandlingsansvarlig</h2>
+        <p>
+          skrivDET tilbys av <strong>Kvasetech AS</strong>, org.nr. <strong>925 574 546</strong>,
+          Thomassletta 3, 9513 Alta, Norge.
+        </p>
+        <p>
+          Når skrivDET brukes som en bedriftsløsning, kan arbeidsgiveren eller virksomheten din
+          være behandlingsansvarlig for møteinnholdet, mens Kvasetech AS og valgte underleverandører
+          behandler data på vegne av virksomheten. For slike oppsett gjelder også virksomhetens egne
+          personvernregler og databehandleravtaler.
+        </p>
+      </section>
+
+      <section className="policy-section">
+        <h2>2. Hvilke opplysninger som kan behandles</h2>
+        <h3>Lisens og drift</h3>
+        <ul>
+          <li>aktiveringsnøkkel eller lisensnøkkel</li>
+          <li>enhetsidentifikator og appversjon</li>
+          <li>aktiveringsstatus, tenant, konfigurasjonsprofil og maltilganger</li>
+          <li>aktiveringstoken og siste innsjekk mot lisensserveren</li>
+        </ul>
+
+        <h3>Innhold du arbeider med</h3>
+        <ul>
+          <li>lydopptak og eventuelle importer du velger å bruke</li>
+          <li>transkripsjoner, sammendrag, notater og dokumentutkast</li>
+          <li>malvalg, dokumentstruktur og språkvalg</li>
+        </ul>
+
+        <h3>Oppsett og sikkerhet</h3>
+        <ul>
+          <li>valg av taleleverandør, formatteringsleverandør og personvernkontroll</li>
+          <li>serveradresser og modellnavn som er lagt inn i appen</li>
+          <li>API-nøkler som du selv legger inn lagres lokalt i iOS Nøkkelring</li>
+        </ul>
+
+        <h3>Kontakt og kundedialog</h3>
+        <p>
+          Hvis du kontakter oss eller får en lisens registrert på navn eller e-post, kan vi behandle
+          disse opplysningene for å levere tjenesten, gi support og administrere abonnement eller
+          bedriftsavtale.
+        </p>
+      </section>
+
+      <section className="policy-section">
+        <h2>3. Hvorfor vi behandler opplysningene</h2>
+        <ul>
+          <li>for å aktivere, fornye og beskytte lisensen din</li>
+          <li>for å hente riktig bedriftskonfigurasjon, malarkiv og policyer</li>
+          <li>for å transkribere lyd og lage strukturerte notater eller dokumenter</li>
+          <li>for å kjøre personvernkontroller, som PII-analyse eller privacy review, når dette er slått på</li>
+          <li>for å oppdage feil, misbruk og sikkerhetshendelser</li>
+          <li>for å gi support når du eller virksomheten din ber om det</li>
+        </ul>
+      </section>
+
+      <section className="policy-section">
+        <h2>4. Hvor behandlingen skjer</h2>
+        <p>
+          skrivDET er bevisst laget slik at behandlingen kan skje på ulike nivåer, avhengig av hva
+          du eller organisasjonen din velger:
+        </p>
+        <ul>
+          <li>
+            <strong>På enheten:</strong> enkelte funksjoner kan kjøres lokalt på iPhone eller i
+            tilknyttet lokal infrastruktur.
+          </li>
+          <li>
+            <strong>skrivDET-backend:</strong> brukes for lisens, aktivering, konfigurasjon og
+            tilgang til bedriftsstyrt malarkiv.
+          </li>
+          <li>
+            <strong>Kundestyrt miljø:</strong> virksomheten kan bruke egne endepunkter for eksempel
+            for Presidio, Azure on-prem, Ollama eller andre interne tjenester.
+          </li>
+          <li>
+            <strong>Eksterne skyleverandører:</strong> hvis du eller virksomheten velger det, kan
+            lyd, transkripsjon eller dokumentinnhold behandles av valgte leverandører som for eksempel
+            OpenAI, Google, Microsoft/Azure eller andre OpenAI-kompatible tjenester.
+          </li>
+        </ul>
+        <p>
+          Hvilke leverandører som faktisk brukes, avhenger av innstillingene i appen og eventuelle
+          bedriftsstyrte policyer. Vi anbefaler at virksomheter velger leverandører og oppsett som
+          passer deres egne krav til sikkerhet, datalagring og databehandleravtaler.
+        </p>
+      </section>
+
+      <section className="policy-section">
+        <h2>5. Deling og utlevering</h2>
+        <p>Vi selger ikke personopplysninger, og vi bruker ikke data til tredjepartsannonsering.</p>
+        <p>Opplysninger kan deles når det er nødvendig for å levere funksjonen du ber om, for eksempel:</p>
+        <ul>
+          <li>med skrivDET-backend for lisens, maltilgang og bedriftskonfigurasjon</li>
+          <li>med tale- eller språkleverandøren du eller virksomheten har valgt</li>
+          <li>med personvernkontroller som Presidio eller privacy review når slike steg er aktivert</li>
+          <li>med virksomhetens egne systemer når skrivDET er satt opp mot interne endepunkter</li>
+          <li>dersom vi er rettslig forpliktet til det eller må beskytte tjenesten mot misbruk</li>
+        </ul>
+      </section>
+
+      <section className="policy-section">
+        <h2>6. Lagring og sikkerhet</h2>
+        <p>
+          skrivDET lagrer aktiveringstoken og brukerlagte API-nøkler i iOS Nøkkelring. Opptak,
+          transkripsjoner, notater, maler og appinnstillinger kan lagres lokalt på enheten til du
+          sletter dem, eller til virksomhetens policy sier noe annet.
+        </p>
+        <p>
+          Lisens- og driftsdata lagres så lenge det er nødvendig for å levere tjenesten, forebygge
+          misbruk, dokumentere lisensstatus og oppfylle rettslige plikter. Bedriftskunder kan i tillegg
+          ha egne oppbevaringsregler som gjelder for møteinnhold behandlet på deres vegne.
+        </p>
+      </section>
+
+      <section className="policy-section">
+        <h2>7. Dine valg og rettigheter</h2>
+        <ul>
+          <li>Du kan slette opptak, notater og lokalt lagret innhold fra appen.</li>
+          <li>Du kan velge lokale eller kundestyrte tjenester der slike alternativer er satt opp.</li>
+          <li>Du kan be om innsyn, retting eller sletting der dette følger av loven.</li>
+          <li>Bedriftsbrukere bør også kontakte sin administrator eller arbeidsgiver ved spørsmål om møteinnhold behandlet på vegne av virksomheten.</li>
+          <li>Du kan klage til Datatilsynet hvis du mener behandlingen ikke skjer i tråd med regelverket.</li>
+        </ul>
+      </section>
+
+      <section className="policy-section">
+        <h2>8. Barn</h2>
+        <p>
+          skrivDET er laget for profesjonell og organisatorisk bruk, og er ikke rettet mot barn.
+          Vi samler ikke bevisst inn personopplysninger fra barn gjennom appen.
+        </p>
+      </section>
+
+      <section className="policy-section">
+        <h2>9. Endringer</h2>
+        <p>
+          Vi kan oppdatere denne erklæringen når funksjoner, leverandører eller regelverk endrer seg.
+          Den nyeste versjonen publiseres på denne siden.
+        </p>
+      </section>
+
+      <section className="policy-section">
+        <h2>10. Kontakt</h2>
+        <p>
+          Har du spørsmål om personvern i skrivDET, kan du kontakte Kvasetech AS via{" "}
+          <a href="/#kontakt">kontaktsiden på skrivdet.no</a> eller sende post til Thomassletta 3,
+          9513 Alta, Norge.
+        </p>
+      </section>
+
+      <Link className="back-link" to="/">
+        Tilbake til forsiden
+      </Link>
+    </PolicyPage>
+  );
+}
+
 function ArchitecturePage() {
   return (
     <>
@@ -856,19 +1036,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route
           path="/privacy-policy"
-          element={
-            <PolicyPage title="Personvernerklæring">
-              <p>
-                Denne lokale kopien gjenskaper nettstedets struktur, men samler ikke inn eller
-                sender personopplysninger noe sted. Kontaktskjemaet lagres kun lokalt i nettleseren
-                for demonstrasjon.
-              </p>
-              <p>
-                Ved en produksjonslansering bør denne siden erstattes med den endelige
-                personvernerklæringen fra skrivDET eller Kvasetech AS.
-              </p>
-            </PolicyPage>
-          }
+          element={<PrivacyPolicyPage />}
         />
         <Route
           path="/accessibility-statement"

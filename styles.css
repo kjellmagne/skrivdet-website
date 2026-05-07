@@ -957,10 +957,66 @@ body.motion-enabled .how-section.is-sequenced .how-feature-card {
   font-size: clamp(2rem, 4vw, 3rem);
 }
 
+.page-card h2,
+.page-card h3 {
+  color: var(--text);
+}
+
+.page-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.page-card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.02rem;
+}
+
 .page-card p,
 .page-card li {
   color: var(--muted);
   line-height: 1.7;
+}
+
+.page-card ul {
+  margin: 0.85rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.page-card li + li {
+  margin-top: 0.45rem;
+}
+
+.policy-updated {
+  margin-top: -0.35rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.policy-lead {
+  margin-bottom: 1.4rem;
+}
+
+.policy-summary,
+.policy-section {
+  margin-top: 1.6rem;
+}
+
+.policy-summary {
+  padding: 1.15rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fcfefe, #f4f8f8);
+}
+
+.policy-section p + p,
+.policy-section ul + p,
+.policy-section p + ul,
+.policy-summary p + ul,
+.policy-summary ul + p {
+  margin-top: 0.85rem;
 }
 
 .back-link {
