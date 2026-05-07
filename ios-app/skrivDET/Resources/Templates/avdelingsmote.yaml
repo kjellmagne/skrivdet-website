@@ -1,0 +1,86 @@
+identity:
+  id: 9e36f7ec-4a6d-45fc-a490-4b5a6e43f6e1
+  title: Avdelingsmøte
+  icon: person.3.sequence.fill
+  short_description: Strukturert møtereferat med beslutninger, ansvar og videre oppfølging.
+  category: avdelingsmote
+  tags:
+    - mote
+    - avdeling
+    - referat
+  language: nb-NO
+  version: 1.0.0
+context:
+  purpose: Dokumentere et avdelingsmøte slik at beslutninger, avklaringer og tiltak blir tydelige for deltakerne og for videre oppfølging.
+  typical_setting: Regelmessig avdelingsmøte, fysisk eller digitalt.
+  typical_participants:
+    - role: Leder
+    - role: Medarbeidere
+  goals:
+    - Oppsummere hovedtema
+    - Synliggjøre beslutninger og ansvar
+    - Lage en kort liste over tiltak
+  related_processes:
+    - Intern oppfølging
+    - Avdelingsplanlegging
+perspective:
+  voice: third_person
+  audience: colleagues
+  tone: semi_formell
+  style_rules:
+    - Bokmål, aktiv form
+    - Kort, presist og etterprøvbart
+    - Skill beslutninger fra diskusjon
+  preserve_original_voice: false
+structure:
+  sections:
+    - title: Møteinformasjon
+      purpose: Dato, deltakere, sted eller format og varighet hvis dette er kjent.
+      format: fill_in
+      required: true
+      extraction_hints:
+        - dato
+        - deltakere
+        - Teams
+        - møterom
+    - title: Sammendrag
+      purpose: Kort oppsummering av hva møtet handlet om.
+      format: prose
+      required: true
+    - title: Beslutninger
+      purpose: Beslutninger eller avklaringer som ble gjort i møtet.
+      format: bullet_list
+      required: true
+      extraction_hints:
+        - besluttet
+        - avklart
+        - vi gjør
+    - title: Tiltak
+      purpose: Konkrete oppgaver med ansvarlig og frist.
+      format: table
+      required: true
+      extraction_hints:
+        - ansvarlig
+        - frist
+        - følger opp
+    - title: Åpne punkter
+      purpose: Tema som må avklares senere.
+      format: bullet_list
+      required: false
+content_rules:
+  required_elements:
+    - Dato og deltakere hvis nevnt
+    - Beslutninger som faktisk ble tatt
+    - Tiltak med ansvarlig og frist når dette finnes
+  exclusions:
+    - Irrelevante sidespor
+    - Personopplysninger som ikke trengs for oppfølging
+  uncertainty_handling: Marker uklar informasjon med [uklart]. Ikke finn på beslutninger eller tiltak.
+  action_item_format: Tiltak — Ansvarlig — Frist — Status
+  decision_marker: Fet skrift med prefiks "Beslutning:"
+  speaker_attribution: role_only
+llm_prompting:
+  system_prompt_additions: Lag et ryddig møtereferat som kan deles internt uten ekstra opprydding.
+  fallback_behavior: Hvis en påkrevd seksjon ikke har dekning i transkripsjonen, skriv "Ikke dekket i møtet."
+  post_processing:
+    extract_action_items: true

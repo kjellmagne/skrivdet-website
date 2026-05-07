@@ -1,0 +1,86 @@
+identity:
+  id: 4f0f5cf0-e14a-4561-b6bb-e4c98916726a
+  title: Department meeting
+  icon: person.3.sequence.fill
+  short_description: Structured meeting notes with decisions, ownership, and follow-up.
+  category: avdelingsmote
+  tags:
+    - meeting
+    - department
+    - minutes
+  language: en-US
+  version: 1.0.0
+context:
+  purpose: Document a department meeting so decisions, clarifications, and actions are clear for participants and follow-up.
+  typical_setting: A recurring department meeting, in person or online.
+  typical_participants:
+    - role: Manager
+    - role: Team members
+  goals:
+    - Summarize the main topics
+    - Make decisions and ownership visible
+    - Produce a short action list
+  related_processes:
+    - Internal follow-up
+    - Department planning
+perspective:
+  voice: third_person
+  audience: colleagues
+  tone: semi_formell
+  style_rules:
+    - Use clear, active language
+    - Keep it short, precise, and verifiable
+    - Separate decisions from discussion
+  preserve_original_voice: false
+structure:
+  sections:
+    - title: Meeting information
+      purpose: Date, participants, location or format, and duration when known.
+      format: fill_in
+      required: true
+      extraction_hints:
+        - date
+        - participants
+        - Teams
+        - meeting room
+    - title: Summary
+      purpose: A short summary of what the meeting was about.
+      format: prose
+      required: true
+    - title: Decisions
+      purpose: Decisions or clarifications made during the meeting.
+      format: bullet_list
+      required: true
+      extraction_hints:
+        - decided
+        - clarified
+        - we will
+    - title: Actions
+      purpose: Concrete tasks with owner and deadline.
+      format: table
+      required: true
+      extraction_hints:
+        - owner
+        - deadline
+        - follow up
+    - title: Open points
+      purpose: Topics that still need clarification later.
+      format: bullet_list
+      required: false
+content_rules:
+  required_elements:
+    - Date and participants when mentioned
+    - Decisions that were actually made
+    - Actions with owner and deadline when available
+  exclusions:
+    - Irrelevant side tracks
+    - Personal information not needed for follow-up
+  uncertainty_handling: Mark unclear information with [unclear]. Do not invent decisions or actions.
+  action_item_format: Action — Owner — Deadline — Status
+  decision_marker: Bold text with prefix "Decision:"
+  speaker_attribution: role_only
+llm_prompting:
+  system_prompt_additions: Produce tidy meeting notes that can be shared internally without extra cleanup.
+  fallback_behavior: If a required section is not covered in the transcript, write "Not covered in the meeting."
+  post_processing:
+    extract_action_items: true

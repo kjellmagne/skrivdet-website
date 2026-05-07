@@ -1,0 +1,76 @@
+identity:
+  id: 4b86f44f-8835-4cad-a3df-8e3be3222caa
+  title: Oppfølgingssamtale
+  icon: arrow.triangle.2.circlepath
+  short_description: Oppsummerer oppfølging, status, avtaler og videre tiltak etter en samtale.
+  category: oppfolgingssamtale
+  tags:
+    - oppfolging
+    - samtale
+    - avtaler
+  language: nb-NO
+  version: 1.0.0
+context:
+  purpose: Dokumentere en oppfølgingssamtale slik at status, avtaler og videre oppfølging blir tydelig.
+  typical_setting: Samtale mellom leder og ansatt, saksbehandler og bruker, eller annen oppfølgingssituasjon.
+  typical_participants:
+    - role: Samtaleleder
+    - role: Deltaker
+  goals:
+    - Oppsummere hva som er fulgt opp siden sist
+    - Dokumentere nye avtaler
+    - Avklare videre ansvar og frister
+  related_processes:
+    - Personaloppfølging
+    - Brukeroppfølging
+perspective:
+  voice: third_person
+  audience: blandet
+  tone: semi_formell
+  style_rules:
+    - Nøytral og konkret
+    - Ikke overtolk motivasjon eller følelser
+    - Skill status fra nye avtaler
+  preserve_original_voice: false
+structure:
+  sections:
+    - title: Bakgrunn
+      purpose: Kort kontekst for hvorfor oppfølgingen skjer.
+      format: prose
+      required: false
+    - title: Status siden sist
+      purpose: Hva som har skjedd siden forrige kontakt.
+      format: prose
+      required: true
+    - title: Avtaler
+      purpose: Nye eller videreførte avtaler.
+      format: bullet_list
+      required: true
+      extraction_hints:
+        - avtalt
+        - enige om
+        - skal
+    - title: Videre oppfølging
+      purpose: Neste steg med ansvarlig og frist.
+      format: table
+      required: true
+      extraction_hints:
+        - følger opp
+        - frist
+        - innen
+content_rules:
+  required_elements:
+    - Status siden sist
+    - Avtaler og videre oppfølging
+  exclusions:
+    - Private detaljer uten betydning for oppfølgingen
+    - Uverifiserte påstander om tredjepart
+  uncertainty_handling: Bruk [uklart] når avtaler, ansvar eller frister ikke fremgår tydelig.
+  action_item_format: Tiltak — Ansvarlig — Frist
+  decision_marker: Fet skrift med prefiks "Avtalt:"
+  speaker_attribution: role_only
+llm_prompting:
+  system_prompt_additions: Lag et tydelig oppfølgingsnotat med vekt på konkrete avtaler og videre ansvar.
+  fallback_behavior: Hvis historikk eller status mangler, marker seksjonen som "Ikke dekket i samtalen."
+  post_processing:
+    extract_action_items: true

@@ -3,3 +3,10 @@ dist/
 .DS_Store
 .vite/
 npm-debug.log*
+
+# Xcode
+ios-app/build/
+ios-app/*.xcarchive
+ios-app/DerivedData/
+ios-app/**/xcuserdata/
+ios-app/**/*.xcuserstate

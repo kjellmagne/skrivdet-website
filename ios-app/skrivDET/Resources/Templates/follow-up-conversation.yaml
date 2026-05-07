@@ -1,0 +1,76 @@
+identity:
+  id: 92dfbc3e-a891-45f4-b517-26442ae34795
+  title: Follow-up conversation
+  icon: arrow.triangle.2.circlepath
+  short_description: Summarizes status, agreements, and next steps after a follow-up conversation.
+  category: oppfolgingssamtale
+  tags:
+    - follow-up
+    - conversation
+    - agreements
+  language: en-US
+  version: 1.0.0
+context:
+  purpose: Document a follow-up conversation so status, agreements, and next steps are clear.
+  typical_setting: A conversation between manager and employee, caseworker and user, or another follow-up situation.
+  typical_participants:
+    - role: Conversation lead
+    - role: Participant
+  goals:
+    - Summarize what has been followed up since last time
+    - Document new agreements
+    - Clarify next responsibilities and deadlines
+  related_processes:
+    - Staff follow-up
+    - User follow-up
+perspective:
+  voice: third_person
+  audience: blandet
+  tone: semi_formell
+  style_rules:
+    - Stay neutral and concrete
+    - Do not over-interpret motivation or feelings
+    - Separate status from new agreements
+  preserve_original_voice: false
+structure:
+  sections:
+    - title: Background
+      purpose: Short context for why the follow-up is happening.
+      format: prose
+      required: false
+    - title: Status since last time
+      purpose: What has happened since the previous contact.
+      format: prose
+      required: true
+    - title: Agreements
+      purpose: New or continued agreements.
+      format: bullet_list
+      required: true
+      extraction_hints:
+        - agreed
+        - agreed on
+        - will
+    - title: Further follow-up
+      purpose: Next steps with owner and deadline.
+      format: table
+      required: true
+      extraction_hints:
+        - follow up
+        - deadline
+        - by
+content_rules:
+  required_elements:
+    - Status since last time
+    - Agreements and further follow-up
+  exclusions:
+    - Private details that are not relevant for follow-up
+    - Unverified claims about third parties
+  uncertainty_handling: Use [unclear] when agreements, ownership, or deadlines are not clearly stated.
+  action_item_format: Action — Owner — Deadline
+  decision_marker: Bold text with prefix "Agreed:"
+  speaker_attribution: role_only
+llm_prompting:
+  system_prompt_additions: Produce a clear follow-up note with emphasis on concrete agreements and responsibilities.
+  fallback_behavior: If history or status is missing, mark the section as "Not covered in the conversation."
+  post_processing:
+    extract_action_items: true

@@ -1,0 +1,6 @@
+framework module Pods_skrivDET {
+  umbrella header "Pods-skrivDET-umbrella.h"
+
+  export *
+  module * { export * }
+}
