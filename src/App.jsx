@@ -516,6 +516,7 @@ function HomePage() {
   const [activePhoneScreen, setActivePhoneScreen] = useState(0);
   const [previousPhoneScreen, setPreviousPhoneScreen] = useState(0);
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useSiteEffects();
 
@@ -542,12 +543,38 @@ function HomePage() {
     []
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setMessage("");
+
+    const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
-    const firstName = formData.get("firstName")?.toString().trim() || "der";
-    setMessage(`Takk, ${firstName}! Skjemaet er lagret lokalt i denne statiske kopien.`);
-    event.currentTarget.reset();
+    const payload = Object.fromEntries(
+      [...formData.entries()].map(([key, value]) => [key, value.toString().trim()])
+    );
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.message || "Skjemaet kunne ikke sendes.");
+      }
+
+      setMessage(result.message || "Takk! Vi tar kontakt så snart vi kan.");
+      form.reset();
+    } catch (error) {
+      setMessage(error.message || "Beklager, noe gikk galt. Prøv igjen litt senere.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -786,7 +813,9 @@ function HomePage() {
                   <input type={field.type} name={field.name} required={field.required} />
                 </label>
               ))}
-              <button className="button contact-submit" type="submit">Send</button>
+              <button className="button contact-submit" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Sender..." : "Send"}
+              </button>
               <p className="form-message" id="form-message" aria-live="polite">{message}</p>
             </form>
           </div>

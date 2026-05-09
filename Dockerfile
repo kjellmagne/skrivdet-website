@@ -11,11 +11,17 @@ COPY public ./public
 
 RUN npm run build
 
-FROM nginx:1.27-alpine
+FROM node:20-alpine AS runtime
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist /usr/share/nginx/html
+ENV NODE_ENV=production
+WORKDIR /app
 
-EXPOSE 80
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY server.js ./
+COPY --from=build /app/dist ./dist
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]

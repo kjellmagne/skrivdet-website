@@ -7,6 +7,7 @@ Vite/React site for skrivDET by Kvasetech AS.
 - `index.html` – Vite entry file
 - `src/App.jsx` – React app and routes
 - `src/main.jsx` – React bootstrap
+- `server.js` – Express server and contact-form mail endpoint
 - `styles.css` – shared site styling used by React
 - `public/assets/` – images, logos and product screenshots used by the site
 - `Dockerfile` – production image build
@@ -22,7 +23,15 @@ Vite/React site for skrivDET by Kvasetech AS.
 - `npm install`
 - `npm run dev`
 - `npm run build`
+- `npm start`
 - `npm run preview`
+
+The production server listens on `PORT` or `3000` by default. Contact form delivery defaults to:
+
+- `SMTP_HOST=192.168.222.12`
+- `SMTP_PORT=25`
+- `MAIL_TO=post@skrivdet.no`
+- `MAIL_FROM=post@skrivdet.no`
 
 ## Docker
 
@@ -32,7 +41,7 @@ Build the image locally:
 
 Run it locally:
 
-- `docker run --rm -p 8080:80 skrivdet:local`
+- `docker run --rm -p 8080:3000 skrivdet:local`
 
 Then open `http://localhost:8080`.
 
@@ -41,7 +50,7 @@ Then open `http://localhost:8080`.
 After GitHub Actions publishes the image, pull it from GHCR:
 
 - `docker pull ghcr.io/kjellmagne/skrivdet:latest`
-- `docker run -d --name skrivdet -p 80:80 --restart unless-stopped ghcr.io/kjellmagne/skrivdet:latest`
+- `docker run -d --name skrivdet -p 80:3000 --restart unless-stopped ghcr.io/kjellmagne/skrivdet:latest`
 
 If the package stays private, the server must log in first:
 

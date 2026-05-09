@@ -836,6 +836,11 @@ body.motion-enabled .how-section.is-sequenced .how-feature-card {
   box-shadow: 0 14px 28px rgba(88, 119, 134, 0.18);
 }
 
+.contact-submit:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
 .contact-form label {
   display: grid;
   gap: 0.5rem;
