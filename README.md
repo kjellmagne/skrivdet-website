@@ -91,8 +91,8 @@ The defaults in `server.js` already match production. The app does not load `.en
 SECRETS.md
 ~/.ssh/codex_mailcow_kvasetech
 ~/.ssh/codex_mailcow_kvasetech.pub
-~/.ssh/id_ed25519_ulfy_codex
-~/.ssh/id_ed25519_ulfy_codex.pub
+~/.ssh/kvasetech_github_codex_ed25519
+~/.ssh/kvasetech_github_codex_ed25519.pub
 ~/.ssh/config
 ```
 
@@ -100,14 +100,14 @@ After copying private keys, fix permissions:
 
 ```bash
 chmod 700 ~/.ssh
-chmod 600 ~/.ssh/codex_mailcow_kvasetech ~/.ssh/id_ed25519_ulfy_codex
+chmod 600 ~/.ssh/codex_mailcow_kvasetech ~/.ssh/kvasetech_github_codex_ed25519
 chmod 644 ~/.ssh/*.pub
 ```
 
 6. Verify GitHub access:
 
 ```bash
-ssh -T github-ulfy-codex
+ssh -T github-kvasetech-codex
 git status
 ```
 
